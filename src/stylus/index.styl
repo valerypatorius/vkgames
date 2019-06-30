@@ -1,0 +1,692 @@
+@import 'variables';
+@import 'base';
+
+$overlayTransitionDuration = 140ms;
+$mobileOffset = 1.6rem;
+$gameCardEasing = cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+html
+    font-size: 18px
+
+    @media $mq.mobile
+        font-size: 16px
+
+    @media $mq.iphone5
+        font-size: 15px
+
+body
+    background-color: $colors.white
+    color: $colors.text
+    font-family: $fonts.roboto
+    font-size: 1rem
+    line-height: 1.5em
+
+h1, h2, h3, h4, h5, h6
+    font-family: $fonts.rubik
+    font-weight: 700
+
+h1
+    font-size: 4.425rem
+    line-height: 1.15em
+    margin-bottom: 0.3em
+
+    @media $mq.not_desktop
+        font-size: 3.4rem
+
+    @media $mq.mobile
+        font-size: 2.4rem
+
+    @media $mq.iphone5
+        font-size: 2.2rem
+
+h2
+    font-size: 2.65rem
+    line-height: 1.2em
+    margin-top: 1.8em
+    margin-bottom: 0.7em
+    display: flex
+    align-items: center
+
+    @media $mq.mobile
+        font-size: 2rem
+
+    span
+        display: block
+        gradientText()
+        margin-right: 0.4em
+
+    svg
+        flex-shrink: 0
+        width: 0.83em
+        height: @width
+        margin-top: 0.1em
+        margin-right: 0.1em
+
+h3
+    font-size: 2rem
+    line-height: 1.2em
+    margin-bottom: 0.42em
+
+p
+    &:not(:last-child)
+        margin-bottom: 1.5em
+
+    a
+        color: $colors.links
+        border-bottom: 1px solid rgba(@color, 0.5)
+
+        &:hover
+            color: $colors.hover
+            border-bottom-color: rgba(@color, 0.5)
+
+img
+    display: block
+    max-width: 100%
+
+.page
+    flex: 1
+    padding: 4.2rem
+    max-width: 1200px
+    margin-left: auto
+    margin-right: @margin-left
+
+    @media $mq.not_desktop
+        max-width: 640px
+        padding: 3.6rem
+
+    @media $mq.mobile
+        max-width: none
+        padding: $mobileOffset
+
+.article
+    max-width: 640px
+
+    @media $mq.mobile
+        max-width: none
+
+    &__section
+        position: relative
+
+    &__sidebar
+        position: absolute
+        left: 100%
+        margin-left: 130px
+        top: 0
+        width: 415px
+
+        @media $mq.not_desktop
+            width: auto
+            position: fixed
+            top: 0
+            left: auto
+            right: 0
+            bottom: 0
+            margin: 0
+            z-index: 101
+
+        @media $mq.tablet_portrait, $mq.mobile_portrait
+            left: 0
+            top: auto
+
+.header
+    &__partners
+        display: flex
+        align-items: center
+        margin-bottom: 4.6rem
+
+    &__dtf
+        width: 4.3rem
+
+    &__vk
+        width: 2.5rem
+
+    &__x
+        width: 15px
+        height: @width
+        position: relative
+        transform: rotate(45deg)
+        margin: 0 1.3rem
+
+        &:before,
+        &:after
+            content: ''
+            width: 100%
+            height: 1px
+            position: absolute
+            top: 50%
+            margin-top: -1px
+            left: 0
+            background-color: $colors.x
+
+        &:after
+            transform: rotate(90deg)
+
+    &__title
+        max-width: 930px
+        gradientText()
+
+        @media $mq.mobile
+            margin-right: ($mobileOffset - 0.6rem) * -1
+            max-width: 340px
+
+    &__subtitle
+        font-family: $fonts.rubik
+        font-size: 2rem
+        line-height: 1.3em
+        font-weight: 500
+        margin-bottom: 1.3em
+
+        @media $mq.mobile
+            font-size: 1.5rem
+            max-width: 400px
+
+.headerIcons
+    width: 100%
+    height: 100%
+    position: absolute
+    top: 0
+    left: 0
+    z-index: -1
+    pointer-events: none
+
+    &__left,
+    &__right
+        position: absolute
+        top: 0
+
+    &__left
+        left: 50%
+        margin-left: -1000px
+
+        @media $mq.not_large_desktop
+            display: none
+
+    &__right
+        top: 10px
+        right: 0
+        right: 50%
+        margin-right: -1000px
+
+        @media $mq.not_large_desktop
+            margin-right: -870px
+
+        @media $mq.not_desktop
+            top: -30px
+            margin-right: -810px
+
+        @media $mq.mobile
+            right: auto
+            margin-right: 0
+            left: 750px
+
+        @media $mq.iphone5
+            left: 710px
+
+        @media (min-width: 500px) and (max-width: 759px)
+            right: 0
+            margin-right: -250px
+            left: auto
+
+    &__item
+        position: absolute
+        max-width: none
+
+        &--flash
+            width: 360px
+            left: 50px
+            top: 130px
+
+        &--cop
+            width: 205px
+            left: 60px
+            top: 290px
+
+        &--pawn
+            width: 129px
+            left: 90px
+            top: 520px
+
+        &--hit
+            width: 401px
+            right: -120px
+            top: -100px
+
+            @media $mq.not_desktop
+                right: -20px
+
+            @media $mq.mobile
+                width: 250px
+                right: 200px
+                top: 0
+
+            @media $mq.iphone5
+                top: -30px
+                right: 210px
+
+        &--ghost
+            width: 326px
+            right: 90px
+            top: 320px
+
+            @media $mq.mobile
+                width: 200px
+                right: 265px
+                top: 330px
+
+            @media $mq.iphone5
+                display: none
+
+        &--lvlup
+            width: 265px
+            right: 500px
+            top: -30px
+
+            @media $mq.not_desktop
+                top: 10px
+                right: 550px
+
+            @media $mq.mobile
+                display: none
+
+        &--alien
+            width: 163px
+            right: 500px
+            top: 480px
+
+            @media $mq.not_desktop
+                right: 460px
+
+            @media $mq.mobile
+                display: none
+
+        &--ufo
+            width: 300px
+            right: 185px
+            top: -100px
+
+            @media $mq.not_desktop
+                right: 260px
+
+            @media $mq.mobile
+                width: 120px
+                right: 400px
+                top: -10px
+
+            @media $mq.iphone5
+                width: 90px
+                right: 415px
+                top: 0
+
+        &--invader
+            width: 200px
+            right: 280px
+            top: 330px
+
+            @media $mq.not_desktop
+                right: 250px
+
+            @media $mq.mobile
+                width: 100px
+                right: 350px
+                top: 265px
+
+            @media $mq.iphone5
+                width: 80px
+                top: 250px
+                right: 380px
+
+        &--exp
+            width: 176px
+            right: 370px
+            top: 240px
+
+            @media $mq.not_desktop
+                top: 260px
+                right: 270px
+
+            @media $mq.mobile
+                width: 80px
+                right: 450px
+                top: 130px
+
+            @media $mq.iphone5
+                right: 445px
+                top: 120px
+
+.quote
+    margin-top: 2.2rem
+    margin-bottom: 3.9rem
+
+    &__content
+        color: $colors.white
+        background-color: #4477A6
+        background-image: linear-gradient(240deg, #2D9CDB 0%, #2F80ED 100%)
+        border-radius: 1.1rem
+        padding-top: 2.2rem
+        padding-bottom: @padding-top
+        padding-left: 2.8rem
+        padding-right: @padding-left
+        margin-left: @padding-left * -1
+        margin-right: @padding-right * -1
+
+        @media $mq.mobile
+            border-radius: 0
+            padding-left: $mobileOffset
+            padding-right: @padding-left
+            margin-left: @padding-left * -1
+            margin-right: @padding-right * -1
+
+    p
+        &:not(:last-child)
+            margin-bottom: 0.85em
+
+.quoteAuthor
+    display: flex
+    align-items: center
+    margin-top: 1.1rem
+
+    &__photo
+        flex-shrink: 0
+        width: 5.55rem
+        height: @width
+        background-color: $colors.placeholder
+        border-radius: 50%
+        overflow: hidden
+        box-shadow: 0 4px 20px rgba($colors.black, 0.2)
+        margin-right: 1.65rem
+
+        @media $mq.mobile
+            width: 3.8rem
+            height: @width
+            margin-right: $mobileOffset
+
+    &__info
+        color: $colors.author
+
+    &__name
+        font-family: $fonts.rubik
+        font-size: 1.3rem
+        line-height: 1.4em
+        font-weight: 700
+
+.game
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    font-size: 0.9rem
+    line-height: 1.4em
+    color: $colors.author
+
+    @media $mq.not_desktop
+        width: 320px
+        margin: 0 !important
+        position: absolute !important
+        top: 50%
+        transform: translateX(100%) translateY(-50%)
+        right: 0
+        background-color: $colors.white
+        border-radius: 20px 0 0 20px
+        padding: 30px
+        box-shadow: 0 0 150px rgba($colors.black, 0.3)
+        visibility: hidden
+        opacity: 0
+        transition-property: opacity, visibility, transform
+        transition-duration: $overlayTransitionDuration
+
+        &.state--aboveall
+            transform: translateX(0) translateY(-50%)
+            visibility: visible
+            opacity: 1
+
+    @media $mq.tablet_portrait, $mq.mobile_portrait
+        border-radius: 20px 20px 0 0
+        top: auto
+        bottom: 0
+        left: 50%
+        right: auto
+        transform: translateX(-50%) translateY(100%)
+
+        &.state--aboveall
+            transform: translateX(-50%) translateY(0)
+
+    @media $mq.mobile_portrait
+        box-sizing: border-box
+        width: 100%
+        max-width: 400px
+
+    @media $mq.mobile
+        box-shadow: 0 0 150px rgba($colors.black, 0.75)
+        padding: $mobileOffset
+
+    &:not(:last-child)
+        margin-bottom: 4rem
+
+    &__cover
+        width: 100%
+        margin-bottom: 1.44rem
+        position: relative
+
+        svg
+            position: absolute
+            filter: drop-shadow(20px 20px 50px rgba(81, 57, 0, 0.2));
+
+            @media $mq.mobile
+                max-width: 100px
+
+    &__image
+        position: relative
+        background-color: $colors.placeholder
+        box-shadow: 0 10px 50px rgba($colors.black, 0.15)
+        border-radius: 20px
+        overflow: hidden
+
+        &:before
+            content: ''
+            display: block
+            padding-top: 62.65%
+
+        &--230
+            &:before
+                padding-top: 55.42%
+
+        img
+            position: absolute
+            top: 0
+            left: 0
+
+    &__close
+        display: none
+        align-items: center
+        justify-content: center
+        width: 45px
+        height: @width
+        background-color: $colors.white
+        border-radius: 50%
+        position: absolute
+        right: 100%
+        margin-right: 8px
+        top: 10px
+        z-index: 10
+
+        @media $mq.tablet_portrait, $mq.mobile_portrait
+            top: auto
+            bottom: 100%
+            margin-bottom: 8px
+            right: 10px
+            margin-right: 0
+
+    &--restorator {
+        gameCard(
+            title: #F2994A #F2C94C,
+            icon: {
+                size: 42.17%,
+                position: top left,
+                transform: translate(-52%, -48%) rotate(30deg),
+            }
+        )
+    }
+
+    &--wormix {
+        gameCard(
+            title: #2F80ED #6FCF97,
+            icon: {
+                size: 18.07%,
+                position: bottom right,
+                transform: translate(52%, 50%) rotate(-10deg),
+            },
+        )
+    }
+
+.anchor
+    font-weight: 700
+    border: 1px dashed
+    padding: 0 0.3em 0.05em
+    margin: 0 0.2em
+    cursor: help
+    border-radius: 0.16em
+
+    &--yellow
+        color: $colors.yellow
+
+    &--green
+        color: $colors.green
+
+.footer
+    border-top: 2px solid $colors.placeholder
+    padding-top: 4.6rem
+    display: flex
+    flex-direction: column
+    align-items: center
+
+    &__content
+        width: 100%
+        max-width: 320px
+
+        @media $mq.mobile
+            max-width: 300px
+
+    &__more
+        display: block
+        background-image: linear-gradient(240deg, #F2C94C 0%, #EB5757 100%)
+        color: $colors.white
+        height: 50px
+        line-height: @height
+        text-align: center
+        border-radius: 20px
+        margin-bottom: 25px
+        box-shadow: 0 5px 20px rgba(151, 27, 0, 0.25)
+
+        &:hover
+            background-color: $colors.hover
+            background-image: none
+
+.likely
+    display: flex
+    justify-content: space-between
+    align-items: center
+    font-weight: 500
+
+    &__widget
+        box-sizing: border-box
+        display: flex
+        align-items: center
+        justify-content: center
+        height: 50px
+        line-height: @height
+        min-width: 60px
+        border-radius: 20px
+        cursor: pointer
+        position: relative
+        z-index: 1
+
+        &:before
+            content: ''
+            position: absolute
+            top: 2px
+            left: 2px
+            bottom: 2px
+            right: 2px
+            background-color: $colors.white
+            border-radius: 18px
+            z-index: -1
+
+        &:hover
+            background-image: none !important
+            background-color: $colors.hover
+            color: $colors.hover
+
+            .likely__button
+                background-image: none !important
+                background-color: $colors.hover
+            svg
+                fill: currentColor !important
+
+        &--vkontakte
+            padding: 0 18px
+
+        &:nth-child(1)
+            background-image: linear-gradient(240deg, #43a7f0 0%, #3081ed 100%)
+
+            .likely__button
+                gradientText(#43a7f0, #3287ed)
+
+            svg
+                fill: #3287ed
+
+        &:nth-child(2)
+            background-image: linear-gradient(240deg, #4bb6f1 0%, #45abf0 100%)
+
+            svg
+                fill: #48b1f0
+
+        &:nth-child(3)
+            background-image: linear-gradient(240deg, #53c6f2 0%, #4ebbf1 100%)
+
+            svg
+                fill: #50c1f1
+
+    &__button
+        &--vkontakte
+            margin-left: 14px
+
+    &__icon
+        svg
+            width: 20px
+            height: @width
+
+        &--vkontakte
+            svg
+                width: 24px
+                height: @width
+
+    &__counter
+        display: none
+
+.overlay
+    width: 100%
+    height: 100%
+    background-color: rgba($colors.white, 0.75)
+    position: fixed
+    top: 0
+    left: 0
+    z-index: 99
+    visibility: hidden
+    opacity: 0
+    transition-property: opacity, visibility
+    transition-duration: $overlayTransitionDuration
+    will-change: opacity, visibility
+
+    @media $mq.mobile
+        background-color: transparent
+
+.state--visible
+    visibility: visible
+    opacity: 1
+
+.state--aboveall
+    position: relative
+    z-index: 100
+
+.state--touch
+    .game__close
+        display: flex

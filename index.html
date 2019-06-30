@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Дикий Запад: как развивалась игровая платформа ВКонтакте</title>
+
+    <style>
+        .preloader {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            z-index: 1000;
+        }
+
+        .preloader.state--hidden {
+            visibility: hidden;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.14s;
+        }
+
+        .preloader__icon {
+            width: 72px;
+            height: 72px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -36px;
+            margin-left: -36px;
+            animation: preloader 4s linear infinite;
+            transform-origin: 50% 100%;
+        }
+
+        .preloader__icon svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        @keyframes preloader {
+            0%, 50%, 100% {
+                transform: rotate(0deg) translate3d(0, 0, 0);
+            }
+            25% {
+                transform: rotate(5deg) translate3d(0, 0, 0);
+            }
+            75% {
+                transform: rotate(-5deg) translate3d(0, 0, 0);
+            }
+        }
+    </style>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700|Rubik:500,700&display=swap&subset=cyrillic" rel="stylesheet">
+</head>
+
+<body>
+    <div class="preloader" data-view="preloader">
+        <div class="preloader__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 47.5 47.5"><clipPath id="a1"><path d="M0 38h38V0H0v38z"/></clipPath><g clip-path="url(#a1)" transform="matrix(1.25 0 0 -1.25 0 47.5)"><path fill="#ffcc4d" d="M36 19c0-9.389-7.611-17-17-17C9.612 2 2 9.611 2 19c0 9.388 7.612 17 17 17 9.389 0 17-7.612 17-17"/><path fill="#664500" d="M22 11a3 3 0 1 0-6 0 3 3 0 0 0 6 0M18.313 20.388a.501.501 0 0 1-.61.014c-.013-.01-1.261-.902-3.702-.902s-3.69.892-3.701.9a.5.5 0 0 1-.757-.603c.061-.135 1.5-3.297 4.458-3.297s4.397 3.162 4.457 3.297a.5.5 0 0 1-.145.591M28.313 20.388a.5.5 0 0 1-.61.014c-.012-.01-1.261-.902-3.702-.902s-3.691.892-3.701.9a.5.5 0 0 1-.757-.603c.06-.135 1.5-3.297 4.458-3.297s4.397 3.162 4.457 3.297a.5.5 0 0 1-.145.591"/><path fill="#2a6797" d="M16.998 31.87h-2.003c-.432 0-.78.276-.78.756 0 .479.348.755.78.755h3.922c.156 0 .563-.071.563-.539 0-.228-.047-.336-.179-.516l-2.723-3.814h2.279c.432 0 .779-.276.779-.756 0-.479-.347-.755-.779-.755h-4.018c-.384 0-.708.192-.708.588 0 .192.096.371.156.468l2.711 3.813zM24.502 34.687h-2.34c-.504 0-.91.322-.91.882 0 .561.406.883.91.883h4.58c.184 0 .66-.084.66-.63 0-.266-.056-.392-.211-.603l-3.179-4.454h2.662c.504 0 .91-.322.91-.883 0-.56-.406-.882-.91-.882h-4.693c-.449 0-.827.224-.827.687 0 .224.112.434.182.545l3.166 4.455zM32.502 31.31h-3.008c-.648 0-1.17.414-1.17 1.134s.522 1.135 1.17 1.135h5.889c.234 0 .846-.108.846-.811 0-.341-.073-.504-.27-.774l-4.088-5.726h3.422c.647 0 1.17-.414 1.17-1.134S35.94 24 35.293 24H29.26c-.576 0-1.062.288-1.062.882 0 .288.144.558.234.702l4.07 5.726z"/></g></svg>
+        </div>
+    </div>
+
+    <main class="page">
+        <header class="header">
+            <div class="headerIcons" data-view="headerIcons">
+                <div class="headerIcons__left">
+                    <div class="headerIcons__item headerIcons__item--cop">
+                        <img data-src="https://leonardo.osnova.io/4303abc0-8582-589a-45b8-11518906fe5b/" alt="" data-parallax data-depth="0.15">
+                    </div>
+                    <div class="headerIcons__item headerIcons__item--pawn">
+                        <img data-src="https://leonardo.osnova.io/68cbadb1-207b-3016-b92c-d73725ac7fb0/" alt="" data-parallax data-depth="0.075">
+                    </div>
+                    <div class="headerIcons__item headerIcons__item--flash">
+                        <img data-src="https://leonardo.osnova.io/2c73bd54-20d4-2b03-e459-e184ef13236d/" alt="" data-parallax data-depth="0.05">
+                    </div>
+                </div>
+
+                <div class="headerIcons__right">
+                    <div class="headerIcons__item headerIcons__item--exp">
+                        <img data-src="https://leonardo.osnova.io/19e1ef8f-fe4c-3fac-dbd9-55a7e31d47fb/" alt="" data-parallax data-depth="0.25">
+                    </div>
+
+                    <div class="headerIcons__item headerIcons__item--invader">
+                        <img data-src="https://leonardo.osnova.io/d7354612-b083-4d38-7335-dac4fa560fb4/" alt="" data-parallax data-depth="0.15">
+                    </div>
+
+                    <div class="headerIcons__item headerIcons__item--ufo">
+                        <img data-src="https://leonardo.osnova.io/456bf8b5-ad2c-3447-f933-8f7258106ffa/" alt="" data-parallax data-depth="0.09">
+                    </div>
+
+                    <div class="headerIcons__item headerIcons__item--alien">
+                        <img data-src="https://leonardo.osnova.io/e2044e00-1f5a-3eb2-4ca6-aa8ada719bb4/" alt="" data-parallax data-depth="0.07">
+                    </div>
+
+                    <div class="headerIcons__item headerIcons__item--lvlup">
+                        <img data-src="https://leonardo.osnova.io/0a00bb85-28ae-9936-3b87-365544240203/" alt="" data-parallax data-depth="0.03">
+                    </div>
+
+                    <div class="headerIcons__item headerIcons__item--hit">
+                        <img data-src="https://leonardo.osnova.io/b5e8f82e-d2b3-0e1b-ecbc-1c6f8a798843/" alt="" data-parallax data-depth="0.05">
+                    </div>
+
+                    <div class="headerIcons__item headerIcons__item--ghost">
+                        <img data-src="https://leonardo.osnova.io/07a6f23f-5f28-49de-5c7c-e8304710fcac/" alt="" data-parallax data-depth="0.04">
+                    </div>
+                </div>
+            </div>
+
+            <div class="header__partners">
+                <a href="https://dtf.ru/" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="header__dtf" viewBox="0 0 77 25"><path d="M15.702 0H0v25h15.702c5.45 0 9.882-4.33 9.882-9.655v-5.69C25.584 4.33 21.152 0 15.702 0zm3.447 15.345c0 1.856-1.545 3.368-3.446 3.368H6.432V6.286h9.27c1.9 0 3.446 1.509 3.446 3.37v5.689zm8.251-9.06h8.983v18.663h6.432V6.286h8.983V0H27.4v6.286zm48.687 0V0H55.314v24.948h6.433v-7.35h10.85v-6.283h-10.85v-5.03"/></svg>
+                </a>
+                <div class="header__x"></div>
+                <a href="https://vk.com/" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="header__vk" viewBox="0 0 45 43"><path d="M15.593 0h13.814C42.015 0 45 2.795 45 14.598V27.53c0 11.803-2.985 14.598-15.593 14.598H15.593C2.985 42.128 0 39.333 0 27.53V14.597C0 2.796 2.985 0 15.593 0z" clip-rule="evenodd"/><path fill="#fff" fill-rule="evenodd" d="M36.838 14.509c.223-.655 0-1.13-.984-1.13h-3.271c-.826 0-1.207.416-1.43.862 0 0-1.682 3.806-4.032 6.273-.763.714-1.112.951-1.525.951-.222 0-.508-.237-.508-.891v-6.095c0-.773-.254-1.13-.953-1.13h-5.144c-.508 0-.826.357-.826.714 0 .743 1.175.921 1.302 3.002v4.52c0 .98-.19 1.159-.603 1.159-1.112 0-3.811-3.835-5.43-8.206-.318-.862-.636-1.189-1.462-1.189H8.67c-.953 0-1.112.416-1.112.862 0 .803 1.112 4.846 5.177 10.198 2.699 3.657 6.542 5.619 10.003 5.619 2.096 0 2.35-.446 2.35-1.19v-2.764c0-.892.19-1.04.858-1.04.476 0 1.333.237 3.27 1.991 2.224 2.081 2.605 3.033 3.843 3.033h3.271c.953 0 1.398-.447 1.144-1.309-.286-.862-1.366-2.11-2.763-3.597-.763-.832-1.906-1.754-2.255-2.2-.477-.595-.35-.833 0-1.368-.032 0 3.97-5.292 4.382-7.075z" clip-rule="evenodd"/></svg>
+                </a>
+            </div>
+
+            <h1 class="header__title">
+                Дикий Запад: как развивалась игровая платформа ВКонтакте
+            </h1>
+
+            <div class="header__subtitle">
+                Драмы и преступления в&nbsp;социальной сети
+            </div>
+        </header>
+
+        <article class="article">
+            <p>
+                Изначально игровая платформа «ВКонтакте» поддерживала только приложения на Flash. Но за десять лет она стала фронтиром для тысяч разработчиков и менялась вместе с игровым рынком.
+                Мы пообщались с теми, кто пришёл на платформу в самом начале её пути. Они рассказали нам свои истории, полные как хороших моментов, так и драм с теневыми схемами.
+            </p>
+
+            <h2>
+                <span>Начало пути</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 47.5 47.5"><defs><clipPath id="a2"><path d="M0 38h38V0H0v38z"/></clipPath></defs><g clip-path="url(#a2)" transform="matrix(1.25 0 0 -1.25 0 47.5)"><path fill="#a0041e" d="M2 20l8 7 16-1 1-16-7-8s0 5.999-6 12c-6.001 6.001-12 6-12 6"/><path fill="#ffac33" d="M1.973 2s-.036 7.979 2.985 11S16 15.813 16 15.813 15.999 8 12.999 5c-3-3-11.026-3-11.026-3"/><path fill="#ffcc4d" d="M5.999 10a4 4 0 1 0 8 0 4 4 0 0 0-8 0"/><path fill="#55acee" d="M36.999 37s-10 0-22-10c-6-5-6-14-4-16s11-2 16 4c10 12 10 22 10 22"/><path d="M27.999 32a3.996 3.996 0 0 1-3.641-2.36c.502.227 1.055.36 1.641.36a4 4 0 0 0 4-4c0-.586-.133-1.139-.359-1.64A3.995 3.995 0 0 1 27.999 32"/><path fill="#a0041e" d="M9 9s0 4 1 5 13.001 10.999 14 10c.999-.999-9.001-13-10.001-14S9 9 9 9"/></g></svg>
+            </h2>
+
+            <p>
+                Денис Шевченко начал свой путь в геймдеве ещё студентом Кубанского государственного университета. Тогда, в начале 2000-х, он пытался создать собственный игровой движок на С++,
+                однако по-настоящему работать в индустрии стал лишь в 2007-м — после того, как переехал в Москву и устроился в компанию Time Zero backend-программистом на Java.
+            </p>
+            <p>
+                Студия с 2003 года <a href="https://dtf.ru/gamedev/7440-v-kakoy-to-moment-ya-perestal-spat-bolshoe-intervyu-s-borisom-gercovskim" target="_blank">занималась</a> разработкой и поддержкой браузерной MMORPG — чрезвычайно популярного в те времена жанра. Многие разработчики подобных проектов стремились равняться на легендарный «Бойцовский клуб», его считали эталоном.
+                Однако на рынке были и другие игры, которые можно было запускать в браузере — проще, не требующие от пользователя много времени и изучения огромного числа механик, а потому доступнее для более широкой аудитории.
+            </p>
+            <p>
+                Основанные на практически «мёртвой» сейчас технологии Flash, они оказались на пике своей популярности в середине 2000-х. Тогда компании Armor Games и Kongregate <a href="https://dtf.ru/gameindustry/35216-praroditeli-indi-kak-flash-igry-izmenili-industriyu" target="_blank">инвестировали</a> в потенциально успешные проекты, предоставляли их авторам платформы для размещения и помогали с монетизацией. Разумеется, охват таких площадок был меньше, чем у социальных сетей — их пользователями были лишь те, кому интересны игры.
+            </p>
+            <p>
+                Учитывая интерес к Flash-играм, запуск специализированных площадок на базе соцсетей был вопросом времени. ВКонтакте открыла свою платформу в 2008 году — изначально она предназначалась не только для игр.
+            </p>
+
+            <blockquote class="quote">
+                <div class="quote__content">
+                    <p>
+                        Сразу появилось множество приложений: от тестов и чатов до игр. Первыми были простые Flash-игры: карты, нарды, шашки. Большая часть проектов не давала  возможности пользователям взаимодействовать друг с другом. Самыми сложными были, наверное, игры с совместным рисованием.
+                    </p>
+                    <p>
+                        Число игр росло быстрее количества приложений. Стало понятно, что наша площадка, сильная социальными связями и взаимодействиями между друзьями, может многое дать игрокам.
+                    </p>
+                </div>
+
+                <footer class="quoteAuthor">
+                    <div class="quoteAuthor__photo">
+                        <img src="https://leonardo.osnova.io/22416e85-bbba-f311-bef8-63e6d8f4c476/" alt="">
+                    </div>
+
+                    <div class="quoteAuthor__info">
+                        <div class="quoteAuthor__name">Максим Бабичев</div>
+
+                        <div class="quoteAuthor__job">
+                            руководитель игровой платформы ВКонтакте
+                        </div>
+                    </div>
+                </footer>
+            </blockquote>
+
+            <section class="article__section">
+                <p>
+                    Функции социального взаимодействия появились в играх ВКонтакте в 2009 году. У Пользователи социальной сети теперь могли приглашать друзей в игры и хвастаться достижениями на своих страницах. Тогда же было запущено API, которое позволяло разработчикам безопасно зарабатывать на своих играх с помощью внутренней валюты — «голосов».
+                </p>
+                <p>
+                    В том же году началось формирование холдинга Astrum Online Entertainment, в который вошли Astrum Nival, IT Territory и Time Zero, в которой работал Денис Шевченко. Узнав о том, что авторы игр ВКонтакте получают «кучу денег», он решил покинуть компанию и заняться самостоятельной разработкой. Денис собрал команду, в которую вошли его друг Алексей и жена Оксана. Однако ни у кого из них не было опыта работы с Flash, только с Java. Свою студию они назвали Pragmatix.
+                </p>
+
+                <blockquote class="quote">
+                    <div class="quote__content">
+                        <p>
+                            Изначально я планировал сделать аналог игры <span class="anchor anchor--yellow" data-anchor="restorator" data-mouseover="toggleOverlay" data-mouseout="toggleOverlay" data-touchend="toggleOverlay">«Ресторатор»</span> — мне нравилось наблюдать за копошением персонажей, но я постоянно думал, что первый проект должен быть максимально простым, так как у нас не было опыта. В одном из разговоров с моим другом Михаилом он посоветовал сделать аналог игры Worms для социальных сетей. Я подумал: «Хм, а это не выглядит сложным, и сильных конкурентов тут нет; почему бы и не попробовать?». Следующие три месяца мы работали над нашей первой игрой <span class="anchor anchor--green" data-anchor="wormix" data-mouseover="toggleOverlay" data-mouseout="toggleOverlay" data-touchend="toggleOverlay">«Вормикс»</span>, которая за пару лет стала мега-хитом.
+                        </p>
+                    </div>
+
+                    <footer class="quoteAuthor">
+                        <div class="quoteAuthor__photo">
+                            <img src="https://leonardo.osnova.io/3a166f57-bd9e-f046-1881-d65ff9c068c9/" alt="">
+                        </div>
+
+                        <div class="quoteAuthor__info">
+                            <div class="quoteAuthor__name">Денис Шевченко</div>
+
+                            <div class="quoteAuthor__job">
+                                основатель студии Pragmatix
+                            </div>
+                        </div>
+                    </footer>
+                </blockquote>
+
+                <p>
+                    C открытием API для разработчиков на платформу хлынул поток авторов, которых привлекла большая пользовательская база социальной сети и потенциальная прибыль. ВКонтакте стала для них чем-то вроде Клондайка.
+                </p>
+
+                <aside class="article__sidebar">
+
+                    <div class="game game--restorator" data-anchor="restorator" data-mouseover="toggleOverlay" data-mouseout="toggleOverlay">
+                        <div class="game__close" data-touchend="hideOverlay">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><path fill="#2F80ED" d="M19.324 3.94L13.264 10l6.06 6.06a2.308 2.308 0 0 1-3.263 3.264L10 13.264l-6.06 6.06A2.3 2.3 0 0 1 2.307 20a2.308 2.308 0 0 1-1.631-3.94L6.736 10 .675 3.94A2.308 2.308 0 0 1 3.939.675L10 6.736l6.06-6.06a2.308 2.308 0 0 1 3.264 3.263z"/><path fill="url(#paint0_linear)" d="M19.324 3.94L13.264 10l6.06 6.06a2.308 2.308 0 0 1-3.263 3.264L10 13.264l-6.06 6.06A2.3 2.3 0 0 1 2.307 20a2.308 2.308 0 0 1-1.631-3.94L6.736 10 .675 3.94A2.308 2.308 0 0 1 3.939.675L10 6.736l6.06-6.06a2.308 2.308 0 0 1 3.264 3.263z"/><defs><linearGradient id="paint0_linear" x1="18" x2="1.5" y2="20" gradientUnits="userSpaceOnUse"><stop stop-color="#56CCF2"/><stop offset="1" stop-color="#2F80ED"/></linearGradient></defs></svg>
+                        </div>
+
+                        <div class="game__cover">
+                            <div class="game__image">
+                                <img src="https://leonardo.osnova.io/00cf98b0-efec-70bc-eb9f-2e66c9f57d44/" alt="">
+                            </div>
+
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 47.5 47.5"><defs><clipPath id="a3"><path d="M0 38h38V0H0v38z"/></clipPath><clipPath id="b3"><path d="M6.727 31.382c-.477-.233-.54-.84-.414-1.278C6.438 29.667 17 3 17 3s1-2 2-2c1.104 0 2 2 2 2l10.704 27.221s.213.842-.569 1.229C29.391 32.311 25.047 34 19 34c-6.213 0-10.616-1.81-12.273-2.618"/></clipPath></defs><g clip-path="url(#a3)" transform="matrix(1.25 0 0 -1.25 0 47.5)"><path fill="#f4900c" d="M19 33c7.257 0 13-4 14.699-2 .197.323.301.657.301 1 0 2-6.716 5-15 5-8.284 0-15-3-15-5 0-.343.104-.677.301-1C6 29 11.743 33 19 33"/><path fill="#ffcc4d" d="M19 34c-6.213 0-10.616-1.81-12.273-2.618-.477-.233-.54-.84-.415-1.278C6.437 29.667 17 3 17 3s.896-2 2-2 2 2 2 2l10.704 27.221s.213.841-.569 1.228C29.392 32.311 25.047 34 19 34"/></g><g clip-path="url(#b3)" transform="matrix(1.25 0 0 -1.25 0 47.5)"><path fill="#be1931" d="M19 6a4.001 4.001 0 1 0-8.002.002A4.001 4.001 0 0 0 19 6M18 17a4 4 0 1 0-7.998.002A4 4 0 0 0 18 17M21 29a4.001 4.001 0 1 0-8.002.002A4.001 4.001 0 0 0 21 29M30 24a4.001 4.001 0 1 0-8.002.002A4.001 4.001 0 0 0 30 24M28 12c0-2.208-1.792-4-4-4s-4 1.792-4 4 1.792 4 4 4 4-1.792 4-4M11 25a4 4 0 1 0-8 0 4 4 0 0 0 8 0"/></g></svg>
+                        </div>
+                        <h3 class="game__title">Ресторатор</h3>
+                        <p>
+                            Симулятор управляющего ресторана, в котором игрокам нужно было развивать своё заведение, формировать меню, закупать ингредиенты и нанимать персонал. Изначально была запущена в Facebook, а уже позднее перекочевала ВКонтакте. Была закрыта в сентябре 2011 года.
+                        </p>
+                    </div>
+
+                    <div class="game game--wormix" data-anchor="wormix" data-mouseover="toggleOverlay" data-mouseout="toggleOverlay">
+                        <div class="game__close" data-touchend="hideOverlay">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><path fill="#2F80ED" d="M19.324 3.94L13.264 10l6.06 6.06a2.308 2.308 0 0 1-3.263 3.264L10 13.264l-6.06 6.06A2.3 2.3 0 0 1 2.307 20a2.308 2.308 0 0 1-1.631-3.94L6.736 10 .675 3.94A2.308 2.308 0 0 1 3.939.675L10 6.736l6.06-6.06a2.308 2.308 0 0 1 3.264 3.263z"/><path fill="url(#paint0_linear)" d="M19.324 3.94L13.264 10l6.06 6.06a2.308 2.308 0 0 1-3.263 3.264L10 13.264l-6.06 6.06A2.3 2.3 0 0 1 2.307 20a2.308 2.308 0 0 1-1.631-3.94L6.736 10 .675 3.94A2.308 2.308 0 0 1 3.939.675L10 6.736l6.06-6.06a2.308 2.308 0 0 1 3.264 3.263z"/><defs><linearGradient id="paint0_linear" x1="18" x2="1.5" y2="20" gradientUnits="userSpaceOnUse"><stop stop-color="#56CCF2"/><stop offset="1" stop-color="#2F80ED"/></linearGradient></defs></svg>
+                        </div>
+
+                        <div class="game__cover">
+                            <div class="game__image game__image--230">
+                                <img src="https://leonardo.osnova.io/7e5b0d5b-8fbb-186e-c2e3-f0b0697ce58d/" alt="">
+                            </div>
+
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 47.5 47.5"><defs><clipPath id="a4"><path d="M0 38h38V0H0v38z"/></clipPath></defs><path fill="#ccd6dd" d="M34.18 16.017l-2.695-2.696 7.07-7.071 2.695 2.696-7.07 7.071z"/><g clip-path="url(#a4)" transform="matrix(1.25 0 0 -1.25 0 47.5)"><path fill="#292f33" d="M29 15c0-7.731-6.269-14-14-14C7.268 1 1 7.269 1 15c0 7.732 6.268 14 14 14 7.731 0 14-6.268 14-14"/><path fill="#292f33" d="M25.656 20L20 25.657l5.656 5.657 5.656-5.657L25.656 20z"/><path fill="#f18f26" d="M37 33a4 4 0 1 0-8 0 4 4 0 0 0 8 0"/><path fill="#fdcb58" d="M35 33a2 2 0 1 0-4.001.001A2 2 0 0 0 35 33"/></g></svg>
+                        </div>
+                        <h3 class="game__title">
+                            <a href="https://vk.com/wormix" target="_blank">Вормикс</a>
+                        </h3>
+                        <p>
+                            Пошаговая PvP-стратегия в духе Worms. Игра работает по сей день и доступна не только ВКонтакте, но и на Android и iOS. Пиковый онлайн — 64 тысячи игроков.
+                        </p>
+                    </div>
+
+                </aside>
+            </section>
+
+            <h2>
+                <span>Дикий Запад</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><path fill="#FFCC4D" d="M33 21c0 8.284-6.716 15-15 15S3 29.284 3 21C3 12.716 9.716 6 18 6s15 6.716 15 15"/><path fill="#664500" d="M25.688 25.605a.41.41 0 0 0-.522-.023c-.032.023-3.23 2.389-7.165 2.389-3.925 0-7.133-2.365-7.165-2.389a.41.41 0 1 0-.6.54c.105.178 2.648 4.318 7.764 4.318 5.115 0 7.659-4.141 7.765-4.317a.413.413 0 0 0-.077-.518zm-10.982-5.84c0 1.593-.922 2.883-2.059 2.883s-2.059-1.29-2.059-2.883c0-1.591.921-2.882 2.059-2.882s2.059 1.29 2.059 2.882zm10.706 0c0 1.593-.922 2.883-2.06 2.883-1.137 0-2.059-1.29-2.059-2.883 0-1.591.922-2.882 2.059-2.882 1.138-.001 2.06 1.29 2.06 2.882zM32 6.13c-1.19 1.441-3.182 1.951-5.076 2.121C26.606 6.713 25.241 1 22.5 1c-2.403 0-3.269 1.091-4.5 1.091C16.769 2.091 15.903 1 13.5 1c-2.741 0-4.106 5.713-4.424 7.251C7.182 8.081 5.19 7.57 4 6.13 1.847 3.524-1 5.444.442 8.304 2.72 12.821 8.23 16 18 16c9.769 0 15.279-3.179 17.558-7.696C37 5.444 34.153 3.524 32 6.13z"/><path fill="#825D0E" d="M21.5 3c-1.869 0-2.543.964-3.5.964-.957 0-1.631-.964-3.5-.964C12.037 3 11 9.75 11 9.75S12.282 12 18 12c5.719 0 7-2.25 7-2.25S23.963 3 21.5 3z"/><path fill="#664500" d="M11 6s2.074 2 7 2c4.927 0 7-2 7-2v2s-2.222 2-7 2c-4.778 0-7-2-7-2V6z"/></svg>
+
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 47.5 47.5"><defs><path id="a5" d="M0 0h47.5v47.5H0z"/></defs><clipPath id="b5"><use overflow="visible" xlink:href="#a5"/></clipPath><g clip-path="url(#b5)" transform="matrix(1.25 0 0 -1.25 0 47.5)"><path fill="#9aaab4" d="M18 15c-2.4 0-4.8 2.6-5 5l10 2c.1-.6 1-7-5-7m-6 18c0-2.2-1.8-4-4-4v-8c0-1.1.9-2 2-2h1c.4-3.5 3.4-6 7-6 3.9 0 7 3.1 7 7v4h10c1.1 0 2 .9 2 2v5h-1c0 1.1-.9 2-2 2h-1c-1.1 0-2-.9-2-2h-6c0 1.1-.9 2-2 2H12"/><path fill="#bf6952" d="M11 9s0-4-4-4H5C1 5 1 9 1 9l1 6c1 9 6 9 6 9l3-5V9z"/><path fill="#9aaab4" d="M10 23c-1.1 0-2 .9-2 2 0 .5-.1 3-3 3-1.1 0-2 .9-2 2s.9 2 2 2c5.1 0 7-4.2 7-7 0-1.1-.9-2-2-2M18 22s-3 1-3 0 0-1 1-3 4-2 3-1-1 3-1 4"/><path fill="#67757f" d="M12 27c0 2.2 1.8 4 4 4h6c2.2 0 2-1.8 2-4s.2-4-2-4h-6c-2.2 0-4 1.8-4 4"/><path fill="#ccd6dd" d="M17 28c-.6 0-1 .4-1 1s.4 1 1 1h5c.6 0 1-.4 1-1s-.4-1-1-1h-5M17 24c-.6 0-1 .4-1 1s.4 1 1 1h5c.6 0 1-.4 1-1s-.4-1-1-1h-5"/></g></svg>
+            </h2>
+
+        </article>
+
+        <footer class="footer">
+            <div class="footer__content">
+
+                <a class="footer__more" href="https://vk.com/gaming" target="_blank">
+                    Узнать больше о платформе
+                </a>
+
+                <div class="likely">
+                    <div class="vkontakte">Поделиться</div>
+                    <div class="facebook"></div>
+                    <div class="twitter"></div>
+                </div>
+
+            </div>
+        </footer>
+    </main>
+
+    <div class="overlay" data-view="overlay" data-touchend="hideOverlay"></div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
