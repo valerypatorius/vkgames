@@ -499,6 +499,8 @@ img
         width: 100%
         margin-bottom: 1.44rem
         position: relative
+        border-radius: 20px
+        box-shadow: 0 10px 50px rgba($colors.black, 0.15)
 
         svg
             position: absolute
@@ -510,9 +512,9 @@ img
     &__image
         position: relative
         background-color: $colors.placeholder
-        box-shadow: 0 10px 50px rgba($colors.black, 0.15)
         border-radius: 20px
         overflow: hidden
+        webkitOverflowFix()
 
         &:before
             content: ''
