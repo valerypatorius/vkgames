@@ -122,18 +122,23 @@ img
         width: 415px
 
         @media $mq.not_desktop
-            width: auto
+            width: 0
+            height: 100%
             position: fixed
             top: 0
             left: auto
             right: 0
-            bottom: 0
+            bottom: auto
             margin: 0
             z-index: 101
 
-        @media $mq.tablet_portrait, $mq.mobile_portrait
+        @media $mq.mobile_portrait
             left: 0
+            right: auto
             top: auto
+            bottom: 0
+            width: 100%
+            height: 0
 
 .header
     &__partners
@@ -495,7 +500,7 @@ img
             visibility: visible
             opacity: 1
 
-    @media $mq.tablet_portrait, $mq.mobile_portrait
+    @media $mq.mobile_portrait
         border-radius: 20px 20px 0 0
         top: auto
         bottom: 0
@@ -642,6 +647,14 @@ img
                 transform: translate(50%, -50%) rotate(-5deg),
             },
         )
+
+        @media $mq.tablet_portrait, $mq.mobile_portrait {
+            .game__icon {
+                top: 0;
+                left: 0;
+                transform: translate(-50%, -50%) rotate(-5deg);
+            }
+        }
     }
 
     &--farm {
