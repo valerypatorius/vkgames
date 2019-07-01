@@ -499,6 +499,12 @@ img
     &:not(:last-child)
         margin-bottom: 4rem
 
+    &__title
+        a
+            &:hover
+                color: $colors.hover
+                -webkit-text-fill-color: @color
+
     &__cover
         width: 100%
         margin-bottom: 1.6rem
@@ -703,6 +709,7 @@ img
     cursor: help
     border-radius: 0.16em
     white-space: nowrap
+    transition: all $overlayTransitionDuration
 
     @media $mq.desktop
         &:not(.state--activated)
@@ -710,26 +717,51 @@ img
             color: rgba($colors.black, 0.5)
             border-color: rgba($colors.black, 0.3)
 
+    &.state--aboveall
+        color: $colors.text
+        border-color: transparent
+
     &--yellow
         color: $colors.yellow
+
+        &.state--aboveall
+            background-color: @color
 
     &--green
         color: $colors.green
 
+        &.state--aboveall
+            background-color: @color
+
     &--purple
         color: $colors.purple
+
+        &.state--aboveall
+            background-color: @color
 
     &--red
         color: $colors.red
 
+        &.state--aboveall
+            background-color: @color
+
     &--greendark
         color: $colors.greendark
+
+        &.state--aboveall
+            background-color: @color
 
     &--blue
         color: $colors.blue
 
+        &.state--aboveall
+            background-color: @color
+
     &--bluelight
         color: $colors.bluelight
+
+        &.state--aboveall
+            background-color: @color
 
 .quote__content
     @media $mq.desktop
@@ -816,13 +848,15 @@ img
                 border-radius: 14px
 
         &:hover
-            background-image: none !important
-            background-color: $colors.hover
-            color: $colors.hover
+            color: $colors.white
+
+            &:before
+                display: none
 
             .likely__button
                 background-image: none !important
-                background-color: $colors.hover
+                background-color: @color
+
             svg
                 fill: currentColor !important
 

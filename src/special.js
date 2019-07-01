@@ -219,20 +219,43 @@ class Special extends BaseSpecial {
     /**
      * Activate or deactivate active anchor elements
      *
+     * @param {String} type - text or card. default to both
      * @param {Boolean} activate
      */
-    activateAnchors(activate = true) {
+    activateAnchors(type = null, activate = true) {
         if (!this.activeAnchor) {
             return;
         }
 
-        for (let i = 0, len = ANCHORS[this.activeAnchor].length; i < len; i += 1) {
-            const el = ANCHORS[this.activeAnchor][i];
+        const delay = isOverlayColored() ? TRANSITION_DURATION : 0;
+
+        let anchors = ANCHORS[this.activeAnchor];
+
+        if (type === 'text') {
+            anchors = anchors.filter(el => el.tagName === 'SPAN');
+        }
+
+        if (type === 'card') {
+            anchors = anchors.filter(el => el.tagName === 'DIV');
+        }
+
+        for (let i = 0, len = anchors.length; i < len; i += 1) {
+            const el = anchors[i];
 
             if (activate) {
                 el.classList.add(CSS.above);
             } else {
                 el.classList.remove(CSS.above);
+
+                if (type === 'text') {
+                    el.style.position = 'relative';
+                    el.style.zIndex = 100;
+
+                    setTimeout(() => {
+                        el.style.position = '';
+                        el.style.zIndex = '';
+                    }, delay);
+                }
             }
         }
     }
@@ -270,7 +293,7 @@ class Special extends BaseSpecial {
         }
 
         if (this.activeAnchor) {
-            this.activateAnchors(false);
+            this.activateAnchors(null, false);
         }
 
         EL.overlay.classList.remove(CSS.visible);
@@ -284,7 +307,7 @@ class Special extends BaseSpecial {
             return;
         }
 
-        this.activateAnchors(true);
+        this.activateAnchors(null, true);
 
         EL.overlay.classList.add(CSS.visible);
     }
@@ -297,8 +320,10 @@ class Special extends BaseSpecial {
 
         const delay = isOverlayColored() ? TRANSITION_DURATION : 0;
 
+        this.activateAnchors('text', false);
+
         this.transitionTimeout = setTimeout(() => {
-            this.activateAnchors(false);
+            this.activateAnchors('card', false);
             this.activeAnchor = null;
 
             clearTimeout(this.transitionTimeout);
