@@ -53,7 +53,7 @@ h2
     span
         display: block
         gradientText()
-        margin-right: 0.4em
+        margin-right: 0.3em
 
     svg
         flex-shrink: 0
@@ -535,11 +535,18 @@ img
 
         &--325
             &:before
-                padding-top: 78.31%
+                @media $mq.not_mobile
+                    padding-top: 78.31%
 
         &--350
             &:before
-                padding-top: 84.34%
+                @media $mq.not_mobile
+                    padding-top: 84.34%
+
+        &--365
+            &:before
+                @media $mq.not_mobile
+                    padding-top: 87.95%
 
         img
             position: absolute
@@ -677,6 +684,17 @@ img
         )
     }
 
+    &--kiss {
+        gameCard(
+            title: #56CCF2 #BB6BD9,
+            icon: {
+                size: 24.1%,
+                position: bottom right,
+                transform: translate(30%, 30%),
+            },
+        )
+    }
+
 .anchor
     font-weight: 700
     border: 1px dashed
@@ -691,9 +709,6 @@ img
             pointer-events: none
             color: rgba($colors.black, 0.5)
             border-color: rgba($colors.black, 0.3)
-
-        &.state--activated
-            pointer-events: auto
 
     &--yellow
         color: $colors.yellow
@@ -713,12 +728,27 @@ img
     &--blue
         color: $colors.blue
 
+    &--bluelight
+        color: $colors.bluelight
+
+.quote__content
+    @media $mq.desktop
+        .anchor:not(.state--activated)
+            pointer-events: none
+            color: rgba($colors.white, 0.7)
+            border-color: rgba($colors.white, 0.3)
+
 .footer
     border-top: 2px solid $colors.placeholder
     padding-top: 4.6rem
     display: flex
     flex-direction: column
     align-items: center
+    margin-top: 6.5rem
+
+    @media $mq.mobile
+        padding-top: $mobileOffset
+        margin-top: 3.2rem
 
     &__content
         width: 100%
@@ -735,8 +765,13 @@ img
         line-height: @height
         text-align: center
         border-radius: 20px
-        margin-bottom: 25px
+        margin-bottom: 1.4rem
         box-shadow: 0 5px 20px rgba(151, 27, 0, 0.25)
+
+        @media $mq.iphone5
+            height: 44px
+            line-height: @height
+            border-radius: 16px
 
         &:hover
             background-color: $colors.hover
@@ -761,6 +796,11 @@ img
         position: relative
         z-index: 1
 
+        @media $mq.iphone5
+            min-width: 55px
+            height: 44px
+            border-radius: 16px
+
         &:before
             content: ''
             position: absolute
@@ -771,6 +811,9 @@ img
             background-color: $colors.white
             border-radius: 18px
             z-index: -1
+
+            @media $mq.iphone5
+                border-radius: 14px
 
         &:hover
             background-image: none !important
@@ -785,6 +828,9 @@ img
 
         &--vkontakte
             padding: 0 18px
+
+            @media $mq.iphone5
+                padding: 0 14px
 
         &:nth-child(1)
             background-image: linear-gradient(240deg, #43a7f0 0%, #3081ed 100%)
@@ -811,15 +857,26 @@ img
         &--vkontakte
             margin-left: 14px
 
+            @media $mq.iphone5
+                margin-left: 10px
+
     &__icon
         svg
             width: 20px
             height: @width
 
+            @media $mq.iphone5
+                width: 18px
+                height: @width
+
         &--vkontakte
             svg
                 width: 24px
                 height: @width
+
+                @media $mq.iphone5
+                    width: 22px
+                    height: @width
 
     &__counter
         display: none
@@ -855,7 +912,7 @@ img
 
 .state--observed
     @media $mq.desktop
-        animation: observed 0.3s forwards cubic-bezier(0.165, 0.84, 0.44, 1)
+        animation: observed 0.4s forwards cubic-bezier(0.165, 0.84, 0.44, 1)
 
 .state--unobserved
     @media $mq.desktop

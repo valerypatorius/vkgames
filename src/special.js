@@ -78,7 +78,7 @@ class Special extends BaseSpecial {
 
         if (isSidebarPresent()) {
             this.observer = new IntersectionObserver(this.observeGames.bind(this), {
-                threshold: [0, 0.5, 0.75, 1],
+                threshold: [0, 0.25, 0.5, 0.75, 1],
             });
 
             for (let i = 0, len = OBSERVED.length; i < len; i += 1) {
@@ -119,16 +119,16 @@ class Special extends BaseSpecial {
      * @param {Array} entries
      */
     observeGames(entries) {
-        const delta = 0.5;
+        const delta = 0.25;
+        const deltaPX = 100;
 
         for (let i = 0, len = entries.length; i < len; i += 1) {
             const entry = entries[i];
             const { target, boundingClientRect, rootBounds, intersectionRatio } = entry;
             const isVisible = (boundingClientRect.top + boundingClientRect.height * delta) < rootBounds.bottom;
-            const isAbove = boundingClientRect.bottom < 0;
             const { anchor } = target.dataset;
 
-            if ((isVisible && intersectionRatio >= delta) || (boundingClientRect.top + boundingClientRect.height * delta) < 0) {
+            if ((isVisible && intersectionRatio >= delta) || (boundingClientRect.top + deltaPX) < 0) {
                 target.classList.add(CSS.observed);
                 target.classList.remove(CSS.unobserved);
 
