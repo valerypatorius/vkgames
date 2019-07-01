@@ -9,16 +9,20 @@ function log(...args) {
     console.log(`%c[${Config.name}]`, 'color: #19b5fe', ...args);
 }
 
-const TRANSITION_DURATION = 140;
+const TRANSITION_DURATION = 200;
 
 const EL = {};
 const ANCHORS = {};
+const OBSERVED = [];
 
 const CSS = {
     above: 'state--aboveall',
     visible: 'state--visible',
     hidden: 'state--hidden',
     touch: 'state--touch',
+    observed: 'state--observed',
+    unobserved: 'state--unobserved',
+    activated: 'state--activated',
 };
 
 /**
@@ -36,6 +40,13 @@ function isOverlayColored() {
     return window.matchMedia('(min-width: 760px)').matches;
 }
 
+/**
+ * If sidebar is present, enable some mechanics (e.g. intersection observer)
+ */
+function isSidebarPresent() {
+    return window.matchMedia('(min-width: 1280px)').matches;
+}
+
 class Special extends BaseSpecial {
     constructor() {
         super();
@@ -46,6 +57,7 @@ class Special extends BaseSpecial {
         this.activeAnchor = null;
 
         this.parallaxInstance = null;
+        this.observer = null;
 
         this.init();
     }
@@ -56,6 +68,7 @@ class Special extends BaseSpecial {
     init() {
         cacheElements(EL);
         this.cacheAnchors();
+        this.cacheObserved();
 
         window.addEventListener('touchstart', onFirstTouch);
 
@@ -63,13 +76,19 @@ class Special extends BaseSpecial {
 
         this.enableParallax();
 
+        if (isSidebarPresent()) {
+            this.observer = new IntersectionObserver(this.observeGames.bind(this), {
+                threshold: [0, 0.5, 0.75, 1],
+            });
+
+            for (let i = 0, len = OBSERVED.length; i < len; i += 1) {
+                this.observer.observe(OBSERVED[i]);
+            }
+        }
+
         this.preloadHeaderIcons().then(() => {
             this.hidePreloader();
         });
-
-        // setTimeout(() => {
-        //     this.hidePreloader();
-        // }, 300);
     }
 
     /**
@@ -83,12 +102,58 @@ class Special extends BaseSpecial {
      * Enable parallax on some icons
      */
     enableParallax() {
-        this.parallaxInstance = new Parallax(EL.headerIcons, {
-            selector: '[data-parallax]',
-            // relativeInput: true,
-        });
+        const scenes = [...document.querySelectorAll('[data-parallax-scene]')];
+
+        for (let i = 0, len = scenes.length; i < len; i += 1) {
+            const scene = scenes[i];
+
+            this.parallaxInstance = new Parallax(scene, {
+                selector: '[data-parallax]',
+            });
+        }
     }
 
+    /**
+     * Observe entries and toggle visibility
+     *
+     * @param {Array} entries
+     */
+    observeGames(entries) {
+        const delta = 0.5;
+
+        for (let i = 0, len = entries.length; i < len; i += 1) {
+            const entry = entries[i];
+            const { target, boundingClientRect, rootBounds, intersectionRatio } = entry;
+            const isVisible = (boundingClientRect.top + boundingClientRect.height * delta) < rootBounds.bottom;
+            const { anchor } = target.dataset;
+
+            if (isVisible && intersectionRatio >= delta) {
+                target.classList.add(CSS.observed);
+                target.classList.remove(CSS.unobserved);
+
+                if (anchor) {
+                    ANCHORS[anchor].forEach((anchor) => {
+                        anchor.classList.add(CSS.activated);
+                    });
+                }
+            }
+
+            if (!isVisible && intersectionRatio <= delta) {
+                target.classList.remove(CSS.observed);
+                target.classList.add(CSS.unobserved);
+
+                if (anchor) {
+                    ANCHORS[anchor].forEach((anchor) => {
+                        anchor.classList.remove(CSS.activated);
+                    });
+                }
+            }
+        }
+    }
+
+    /**
+     * Wait for all header images to load
+     */
     preloadHeaderIcons() {
         const images = [...EL.headerIcons.querySelectorAll('img')];
         const imagesToLoad = images.length;
@@ -134,6 +199,19 @@ class Special extends BaseSpecial {
             }
 
             ANCHORS[name].push(el);
+        }
+    }
+
+    /**
+     * Cache all elements, which should be observed
+     */
+    cacheObserved() {
+        const elements = document.querySelectorAll('[data-observed]');
+
+        for (let i = 0, len = elements.length; i < len; i += 1) {
+            const el = elements[i];
+
+            OBSERVED.push(el);
         }
     }
 

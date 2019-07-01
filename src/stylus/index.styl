@@ -1,7 +1,7 @@
 @import 'variables';
 @import 'base';
 
-$overlayTransitionDuration = 140ms;
+$overlayTransitionDuration = 200ms;
 $mobileOffset = 1.6rem;
 $gameCardEasing = cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
@@ -451,6 +451,9 @@ img
     line-height: 1.4em
     color: $colors.author
 
+    @media $mq.desktop
+        opacity: 0
+
     @media $mq.not_desktop
         width: 320px
         margin: 0 !important
@@ -502,12 +505,16 @@ img
         border-radius: 20px
         box-shadow: 0 10px 50px rgba($colors.black, 0.15)
 
-        svg
-            position: absolute
-            filter: drop-shadow(20px 20px 50px rgba(81, 57, 0, 0.2));
+    &__icon
+        position: absolute
 
-            @media $mq.mobile
-                max-width: 100px
+        @media $mq.mobile
+            max-width: 100px
+
+        svg
+            width: 100%
+            height: auto
+            filter: drop-shadow(20px 20px 50px rgba(81, 57, 0, 0.2));
 
     &__image
         position: relative
@@ -580,6 +587,15 @@ img
     margin: 0 0.2em
     cursor: help
     border-radius: 0.16em
+
+    @media $mq.desktop
+        &:not(.state--activated)
+            pointer-events: none
+            color: rgba($colors.white, 0.5)
+            border-color: rgba($colors.white, 0.3)
+
+        &.state--activated
+            pointer-events: auto
 
     &--yellow
         color: $colors.yellow
@@ -726,3 +742,28 @@ img
 .state--touch
     .game__close
         display: flex
+
+.state--observed
+    @media $mq.desktop
+        animation: observed 0.3s forwards cubic-bezier(0.165, 0.84, 0.44, 1)
+
+.state--unobserved
+    @media $mq.desktop
+        animation: unobserved 0.3s forwards cubic-bezier(0.165, 0.84, 0.44, 1)
+
+@keyframes observed
+    0%
+        opacity: 0
+        transform: translate3d(0, 25%, 0)
+
+    100%
+        opacity: 1
+        transform: translate3d(0, 0, 0)
+
+@keyframes unobserved
+    0%
+        opacity: 1
+        transform: translate3d(0, 0, 0)
+    100%
+        opacity: 0
+        transform: translate3d(0, 25%, 0)

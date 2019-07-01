@@ -58,6 +58,7 @@
     </style>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700|Rubik:500,700&display=swap&subset=cyrillic" rel="stylesheet">
+    <link rel="stylesheet" href="app.css">
 </head>
 
 <body>
@@ -69,46 +70,46 @@
 
     <main class="page">
         <header class="header">
-            <div class="headerIcons" data-view="headerIcons">
+            <div class="headerIcons" data-view="headerIcons" data-parallax-scene>
                 <div class="headerIcons__left">
                     <div class="headerIcons__item headerIcons__item--cop">
-                        <img data-src="https://leonardo.osnova.io/4303abc0-8582-589a-45b8-11518906fe5b/" alt="" data-parallax data-depth="0.15">
+                        <img data-src="https://leonardo.osnova.io/4303abc0-8582-589a-45b8-11518906fe5b/" alt="" data-parallax data-depth-x="0.15" data-depth-y="0.01">
                     </div>
                     <div class="headerIcons__item headerIcons__item--pawn">
-                        <img data-src="https://leonardo.osnova.io/68cbadb1-207b-3016-b92c-d73725ac7fb0/" alt="" data-parallax data-depth="0.075">
+                        <img data-src="https://leonardo.osnova.io/68cbadb1-207b-3016-b92c-d73725ac7fb0/" alt="" data-parallax data-depth-x="0.075" data-depth-y="0.01">
                     </div>
                     <div class="headerIcons__item headerIcons__item--flash">
-                        <img data-src="https://leonardo.osnova.io/2c73bd54-20d4-2b03-e459-e184ef13236d/" alt="" data-parallax data-depth="0.05">
+                        <img data-src="https://leonardo.osnova.io/2c73bd54-20d4-2b03-e459-e184ef13236d/" alt="" data-parallax data-depth-x="0.05" data-depth-y="0.01">
                     </div>
                 </div>
 
                 <div class="headerIcons__right">
                     <div class="headerIcons__item headerIcons__item--exp">
-                        <img data-src="https://leonardo.osnova.io/19e1ef8f-fe4c-3fac-dbd9-55a7e31d47fb/" alt="" data-parallax data-depth="0.175">
+                        <img data-src="https://leonardo.osnova.io/19e1ef8f-fe4c-3fac-dbd9-55a7e31d47fb/" alt="" data-parallax data-depth-x="0.175" data-depth-y="0.01">
                     </div>
 
                     <div class="headerIcons__item headerIcons__item--invader">
-                        <img data-src="https://leonardo.osnova.io/d7354612-b083-4d38-7335-dac4fa560fb4/" alt="" data-parallax data-depth="0.1075">
+                        <img data-src="https://leonardo.osnova.io/d7354612-b083-4d38-7335-dac4fa560fb4/" alt="" data-parallax data-depth-x="0.1075" data-depth-y="0.01">
                     </div>
 
                     <div class="headerIcons__item headerIcons__item--ufo">
-                        <img data-src="https://leonardo.osnova.io/456bf8b5-ad2c-3447-f933-8f7258106ffa/" alt="" data-parallax data-depth="0.09">
+                        <img data-src="https://leonardo.osnova.io/456bf8b5-ad2c-3447-f933-8f7258106ffa/" alt="" data-parallax data-depth-x="0.09" data-depth-y="0.01">
                     </div>
 
                     <div class="headerIcons__item headerIcons__item--alien">
-                        <img data-src="https://leonardo.osnova.io/e2044e00-1f5a-3eb2-4ca6-aa8ada719bb4/" alt="" data-parallax data-depth="0.07">
+                        <img data-src="https://leonardo.osnova.io/e2044e00-1f5a-3eb2-4ca6-aa8ada719bb4/" alt="" data-parallax data-depth-x="0.07" data-depth-y="0.01">
                     </div>
 
                     <div class="headerIcons__item headerIcons__item--lvlup">
-                        <img data-src="https://leonardo.osnova.io/0a00bb85-28ae-9936-3b87-365544240203/" alt="" data-parallax data-depth="0.03">
+                        <img data-src="https://leonardo.osnova.io/0a00bb85-28ae-9936-3b87-365544240203/" alt="" data-parallax data-depth-x="0.03" data-depth-y="0.01">
                     </div>
 
                     <div class="headerIcons__item headerIcons__item--hit">
-                        <img data-src="https://leonardo.osnova.io/b5e8f82e-d2b3-0e1b-ecbc-1c6f8a798843/" alt="" data-parallax data-depth="0.05">
+                        <img data-src="https://leonardo.osnova.io/b5e8f82e-d2b3-0e1b-ecbc-1c6f8a798843/" alt="" data-parallax data-depth-x="0.05" data-depth-y="0.01">
                     </div>
 
                     <div class="headerIcons__item headerIcons__item--ghost">
-                        <img data-src="https://leonardo.osnova.io/07a6f23f-5f28-49de-5c7c-e8304710fcac/" alt="" data-parallax data-depth="0.04">
+                        <img data-src="https://leonardo.osnova.io/07a6f23f-5f28-49de-5c7c-e8304710fcac/" alt="" data-parallax data-depth-x="0.04" data-depth-y="0.01">
                     </div>
                 </div>
             </div>
@@ -219,17 +220,19 @@
 
                 <aside class="article__sidebar">
 
-                    <div class="game game--restorator" data-anchor="restorator" data-mouseover="toggleOverlay" data-mouseout="toggleOverlay">
+                    <div class="game game--restorator" data-anchor="restorator" data-mouseover="toggleOverlay" data-mouseout="toggleOverlay" data-observed>
                         <div class="game__close" data-touchend="hideOverlay">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><path fill="#2F80ED" d="M19.324 3.94L13.264 10l6.06 6.06a2.308 2.308 0 0 1-3.263 3.264L10 13.264l-6.06 6.06A2.3 2.3 0 0 1 2.307 20a2.308 2.308 0 0 1-1.631-3.94L6.736 10 .675 3.94A2.308 2.308 0 0 1 3.939.675L10 6.736l6.06-6.06a2.308 2.308 0 0 1 3.264 3.263z"/><path fill="url(#paint0_linear)" d="M19.324 3.94L13.264 10l6.06 6.06a2.308 2.308 0 0 1-3.263 3.264L10 13.264l-6.06 6.06A2.3 2.3 0 0 1 2.307 20a2.308 2.308 0 0 1-1.631-3.94L6.736 10 .675 3.94A2.308 2.308 0 0 1 3.939.675L10 6.736l6.06-6.06a2.308 2.308 0 0 1 3.264 3.263z"/><defs><linearGradient id="paint0_linear" x1="18" x2="1.5" y2="20" gradientUnits="userSpaceOnUse"><stop stop-color="#56CCF2"/><stop offset="1" stop-color="#2F80ED"/></linearGradient></defs></svg>
                         </div>
 
-                        <div class="game__cover">
+                        <div class="game__cover" data-parallax-scene>
                             <div class="game__image">
                                 <img src="https://leonardo.osnova.io/00cf98b0-efec-70bc-eb9f-2e66c9f57d44/" alt="">
                             </div>
 
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 47.5 47.5"><defs><clipPath id="a3"><path d="M0 38h38V0H0v38z"/></clipPath><clipPath id="b3"><path d="M6.727 31.382c-.477-.233-.54-.84-.414-1.278C6.438 29.667 17 3 17 3s1-2 2-2c1.104 0 2 2 2 2l10.704 27.221s.213.842-.569 1.229C29.391 32.311 25.047 34 19 34c-6.213 0-10.616-1.81-12.273-2.618"/></clipPath></defs><g clip-path="url(#a3)" transform="matrix(1.25 0 0 -1.25 0 47.5)"><path fill="#f4900c" d="M19 33c7.257 0 13-4 14.699-2 .197.323.301.657.301 1 0 2-6.716 5-15 5-8.284 0-15-3-15-5 0-.343.104-.677.301-1C6 29 11.743 33 19 33"/><path fill="#ffcc4d" d="M19 34c-6.213 0-10.616-1.81-12.273-2.618-.477-.233-.54-.84-.415-1.278C6.437 29.667 17 3 17 3s.896-2 2-2 2 2 2 2l10.704 27.221s.213.841-.569 1.228C29.392 32.311 25.047 34 19 34"/></g><g clip-path="url(#b3)" transform="matrix(1.25 0 0 -1.25 0 47.5)"><path fill="#be1931" d="M19 6a4.001 4.001 0 1 0-8.002.002A4.001 4.001 0 0 0 19 6M18 17a4 4 0 1 0-7.998.002A4 4 0 0 0 18 17M21 29a4.001 4.001 0 1 0-8.002.002A4.001 4.001 0 0 0 21 29M30 24a4.001 4.001 0 1 0-8.002.002A4.001 4.001 0 0 0 30 24M28 12c0-2.208-1.792-4-4-4s-4 1.792-4 4 1.792 4 4 4 4-1.792 4-4M11 25a4 4 0 1 0-8 0 4 4 0 0 0 8 0"/></g></svg>
+                            <div class="game__icon">
+                                <svg data-parallax data-depth-x="0.3" data-depth-y="0.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 47.5 47.5"><defs><clipPath id="a3"><path d="M0 38h38V0H0v38z"/></clipPath><clipPath id="b3"><path d="M6.727 31.382c-.477-.233-.54-.84-.414-1.278C6.438 29.667 17 3 17 3s1-2 2-2c1.104 0 2 2 2 2l10.704 27.221s.213.842-.569 1.229C29.391 32.311 25.047 34 19 34c-6.213 0-10.616-1.81-12.273-2.618"/></clipPath></defs><g clip-path="url(#a3)" transform="matrix(1.25 0 0 -1.25 0 47.5)"><path fill="#f4900c" d="M19 33c7.257 0 13-4 14.699-2 .197.323.301.657.301 1 0 2-6.716 5-15 5-8.284 0-15-3-15-5 0-.343.104-.677.301-1C6 29 11.743 33 19 33"/><path fill="#ffcc4d" d="M19 34c-6.213 0-10.616-1.81-12.273-2.618-.477-.233-.54-.84-.415-1.278C6.437 29.667 17 3 17 3s.896-2 2-2 2 2 2 2l10.704 27.221s.213.841-.569 1.228C29.392 32.311 25.047 34 19 34"/></g><g clip-path="url(#b3)" transform="matrix(1.25 0 0 -1.25 0 47.5)"><path fill="#be1931" d="M19 6a4.001 4.001 0 1 0-8.002.002A4.001 4.001 0 0 0 19 6M18 17a4 4 0 1 0-7.998.002A4 4 0 0 0 18 17M21 29a4.001 4.001 0 1 0-8.002.002A4.001 4.001 0 0 0 21 29M30 24a4.001 4.001 0 1 0-8.002.002A4.001 4.001 0 0 0 30 24M28 12c0-2.208-1.792-4-4-4s-4 1.792-4 4 1.792 4 4 4 4-1.792 4-4M11 25a4 4 0 1 0-8 0 4 4 0 0 0 8 0"/></g></svg>
+                            </div>
                         </div>
                         <h3 class="game__title">Ресторатор</h3>
                         <p>
@@ -237,17 +240,19 @@
                         </p>
                     </div>
 
-                    <div class="game game--wormix" data-anchor="wormix" data-mouseover="toggleOverlay" data-mouseout="toggleOverlay">
+                    <div class="game game--wormix" data-anchor="wormix" data-mouseover="toggleOverlay" data-mouseout="toggleOverlay" data-observed>
                         <div class="game__close" data-touchend="hideOverlay">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 20 20"><path fill="#2F80ED" d="M19.324 3.94L13.264 10l6.06 6.06a2.308 2.308 0 0 1-3.263 3.264L10 13.264l-6.06 6.06A2.3 2.3 0 0 1 2.307 20a2.308 2.308 0 0 1-1.631-3.94L6.736 10 .675 3.94A2.308 2.308 0 0 1 3.939.675L10 6.736l6.06-6.06a2.308 2.308 0 0 1 3.264 3.263z"/><path fill="url(#paint0_linear)" d="M19.324 3.94L13.264 10l6.06 6.06a2.308 2.308 0 0 1-3.263 3.264L10 13.264l-6.06 6.06A2.3 2.3 0 0 1 2.307 20a2.308 2.308 0 0 1-1.631-3.94L6.736 10 .675 3.94A2.308 2.308 0 0 1 3.939.675L10 6.736l6.06-6.06a2.308 2.308 0 0 1 3.264 3.263z"/><defs><linearGradient id="paint0_linear" x1="18" x2="1.5" y2="20" gradientUnits="userSpaceOnUse"><stop stop-color="#56CCF2"/><stop offset="1" stop-color="#2F80ED"/></linearGradient></defs></svg>
                         </div>
 
-                        <div class="game__cover">
+                        <div class="game__cover" data-parallax-scene>
                             <div class="game__image game__image--230">
                                 <img src="https://leonardo.osnova.io/7e5b0d5b-8fbb-186e-c2e3-f0b0697ce58d/" alt="">
                             </div>
 
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 47.5 47.5"><defs><clipPath id="a4"><path d="M0 38h38V0H0v38z"/></clipPath></defs><path fill="#ccd6dd" d="M34.18 16.017l-2.695-2.696 7.07-7.071 2.695 2.696-7.07 7.071z"/><g clip-path="url(#a4)" transform="matrix(1.25 0 0 -1.25 0 47.5)"><path fill="#292f33" d="M29 15c0-7.731-6.269-14-14-14C7.268 1 1 7.269 1 15c0 7.732 6.268 14 14 14 7.731 0 14-6.268 14-14"/><path fill="#292f33" d="M25.656 20L20 25.657l5.656 5.657 5.656-5.657L25.656 20z"/><path fill="#f18f26" d="M37 33a4 4 0 1 0-8 0 4 4 0 0 0 8 0"/><path fill="#fdcb58" d="M35 33a2 2 0 1 0-4.001.001A2 2 0 0 0 35 33"/></g></svg>
+                            <div class="game__icon">
+                                <svg data-parallax data-depth-x="0.3" data-depth-y="0.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 47.5 47.5"><defs><clipPath id="a4"><path d="M0 38h38V0H0v38z"/></clipPath></defs><path fill="#ccd6dd" d="M34.18 16.017l-2.695-2.696 7.07-7.071 2.695 2.696-7.07 7.071z"/><g clip-path="url(#a4)" transform="matrix(1.25 0 0 -1.25 0 47.5)"><path fill="#292f33" d="M29 15c0-7.731-6.269-14-14-14C7.268 1 1 7.269 1 15c0 7.732 6.268 14 14 14 7.731 0 14-6.268 14-14"/><path fill="#292f33" d="M25.656 20L20 25.657l5.656 5.657 5.656-5.657L25.656 20z"/><path fill="#f18f26" d="M37 33a4 4 0 1 0-8 0 4 4 0 0 0 8 0"/><path fill="#fdcb58" d="M35 33a2 2 0 1 0-4.001.001A2 2 0 0 0 35 33"/></g></svg>
+                            </div>
                         </div>
                         <h3 class="game__title">
                             <a href="https://vk.com/wormix" target="_blank">Вормикс</a>

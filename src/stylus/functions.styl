@@ -19,16 +19,15 @@ loading(color)
 
 gradientText(start = #56B4F2, end = #2F80ED)
     background-image: linear-gradient(220deg, start 0%, end 100%)
-    -webkit-background-clip: text
+    background-clip: text
     -webkit-text-fill-color: transparent
 
 gameCard(title, icon)
     .game__title
         gradientText(title[0], title[1]);
 
-    .game__cover
-        svg
-            add-property('width', icon.size);
-            add-property(icon.position[0], 0);
-            add-property(icon.position[1], 0);
-            add-property('transform', icon.transform);
+    .game__icon
+        add-property('width', icon.size);
+        add-property(icon.position[0], 0);
+        add-property(icon.position[1], 0);
+        add-property('transform', icon.transform);
