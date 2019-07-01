@@ -43,7 +43,7 @@ h1
 h2
     font-size: 2.65rem
     line-height: 1.2em
-    margin-top: 1.8em
+    margin-top: 1.2em
     margin-bottom: 0.7em
     display: flex
     align-items: center
@@ -399,7 +399,7 @@ img
 
 .quote
     margin-top: 2.2rem
-    margin-bottom: 3.9rem
+    margin-bottom: 2.2rem
 
     &__content
         color: $colors.white
@@ -740,13 +740,16 @@ img
     cursor: help
     border-radius: 0.16em
     white-space: nowrap
-    transition: all $overlayTransitionDuration
+    color: inherit
+    background-color: transparent
+    transition: color, background-color, border-color $overlayTransitionDuration
 
     @media $mq.desktop
         &:not(.state--activated)
             pointer-events: none
             color: rgba($colors.black, 0.5)
             border-color: rgba($colors.black, 0.3)
+            transition: color, background-color, border-color $overlayTransitionDuration
 
     &.state--aboveall
         color: $colors.text
