@@ -64,8 +64,8 @@ h2
 
 h3
     font-size: 2rem
-    line-height: 1.2em
-    margin-bottom: 0.42em
+    line-height: 1.1em
+    margin-bottom: 0.5em
 
 p
     &:not(:last-child)
@@ -402,6 +402,7 @@ img
         padding-right: @padding-left
         margin-left: @padding-left * -1
         margin-right: @padding-right * -1
+        box-shadow: 0 10px 50px rgba(47, 128, 237, 0.2)
 
         @media $mq.mobile
             border-radius: 0
@@ -500,7 +501,7 @@ img
 
     &__cover
         width: 100%
-        margin-bottom: 1.44rem
+        margin-bottom: 1.6rem
         position: relative
         border-radius: 20px
         box-shadow: 0 10px 50px rgba($colors.black, 0.15)
@@ -531,6 +532,14 @@ img
         &--230
             &:before
                 padding-top: 55.42%
+
+        &--325
+            &:before
+                padding-top: 78.31%
+
+        &--350
+            &:before
+                padding-top: 84.34%
 
         img
             position: absolute
@@ -580,19 +589,108 @@ img
         )
     }
 
+    &--love {
+        gameCard(
+            title: #EB5757 #BB6BD9,
+            icon: {
+                size: 35%,
+                position: top right,
+                transform: translate(50%, -50%) rotate(-5deg),
+            },
+        )
+    }
+
+    &--farm {
+        gameCard(
+            title: #F2994A #EB5757,
+            icon: {
+                size: 36.14%,
+                position: top left,
+                transform: translate(-40%, -60%) rotate(10deg),
+            },
+        )
+    }
+
+    &--tanks {
+        gameCard(
+            title: #219653 #6FCF97,
+            icon: {
+                size: 24.1%,
+                position: bottom left,
+                transform: translate(-40%, 30%),
+            },
+        )
+    }
+
+    &--gorodok {
+        gameCard(
+            title: #56CCF2 #2D9CDB,
+            icon: {
+                size: 30.12%,
+                position: bottom right,
+                transform: translate(60%, 30%) rotate(5deg),
+            },
+        )
+    }
+
+    &--batla {
+        gameCard(
+            title: #219653 #6FCF97,
+            icon: {
+                size: 30.12%,
+                position: top left,
+                transform: translate(-25%, -35%) rotate(-25deg),
+            },
+        )
+    }
+
+    &--madmen {
+        gameCard(
+            title: #F2994A #EB5757,
+            icon: {
+                size: 48.2%,
+                position: bottom right,
+                transform: translate(45%, 25%) rotate(-15deg),
+            },
+        )
+    }
+
+    &--angels {
+        gameCard(
+            title: #9B51E0 #BB6BD9,
+            icon: {
+                size: 24.1%,
+                position: bottom right,
+                transform: translate(55%, 25%) rotate(5deg),
+            },
+        )
+    }
+
+    &--arthur {
+        gameCard(
+            title: #56CCF2 #2D9CDB,
+            icon: {
+                size: 30.12%,
+                position: top left,
+                transform: translate(-45%, -40%) rotate(-15deg),
+            },
+        )
+    }
+
 .anchor
     font-weight: 700
     border: 1px dashed
-    padding: 0 0.3em 0.05em
+    padding: 0 0.2em 0.05em
     margin: 0 0.2em
     cursor: help
     border-radius: 0.16em
+    white-space: nowrap
 
     @media $mq.desktop
         &:not(.state--activated)
             pointer-events: none
-            color: rgba($colors.white, 0.5)
-            border-color: rgba($colors.white, 0.3)
+            color: rgba($colors.black, 0.5)
+            border-color: rgba($colors.black, 0.3)
 
         &.state--activated
             pointer-events: auto
@@ -602,6 +700,18 @@ img
 
     &--green
         color: $colors.green
+
+    &--purple
+        color: $colors.purple
+
+    &--red
+        color: $colors.red
+
+    &--greendark
+        color: $colors.greendark
+
+    &--blue
+        color: $colors.blue
 
 .footer
     border-top: 2px solid $colors.placeholder

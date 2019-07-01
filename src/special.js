@@ -125,9 +125,10 @@ class Special extends BaseSpecial {
             const entry = entries[i];
             const { target, boundingClientRect, rootBounds, intersectionRatio } = entry;
             const isVisible = (boundingClientRect.top + boundingClientRect.height * delta) < rootBounds.bottom;
+            const isAbove = boundingClientRect.bottom < 0;
             const { anchor } = target.dataset;
 
-            if (isVisible && intersectionRatio >= delta) {
+            if ((isVisible && intersectionRatio >= delta) || (boundingClientRect.top + boundingClientRect.height * delta) < 0) {
                 target.classList.add(CSS.observed);
                 target.classList.remove(CSS.unobserved);
 
